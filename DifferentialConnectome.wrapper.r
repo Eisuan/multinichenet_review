@@ -24,6 +24,7 @@ test_equal_labels<-function(label1,label2){
 
 
 # Define the Differential connectome wrapper based on vignette
+# includes: not extensive input validation, analysis using custom LR DB 
 
 DifferentialConnectome.wrapper<-function(seurat_obj, metadata_cond_name, 
                                          test_cond, cntrl_cond,
@@ -144,6 +145,7 @@ DifferentialConnectome.wrapper<-function(seurat_obj, metadata_cond_name,
 
 
 # Build connectome function (Standard connectome creation)
+# includes: analysis using custom LR DB 
 
 build.connectome<-function(seurat_obj, db=NA, p.values = TRUE ){
    seurat_obj <- NormalizeData(seurat_obj)
