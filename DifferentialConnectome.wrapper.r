@@ -1,3 +1,5 @@
+
+
 # Defensive checks for ensuring correct data processing 
 # in function DifferentialConnectome.wrapper
 
@@ -20,7 +22,7 @@ test_equal_labels<-function(label1,label2){
 
 
 
-# Define the Differential connectome wrapperbased on vignette
+# Define the Differential connectome wrapper based on vignette
 
 DifferentialConnectome.wrapper<-function(seurat_obj, metadata_cond_name, 
                                          test_cond, cntrl_cond,
@@ -41,7 +43,7 @@ DifferentialConnectome.wrapper<-function(seurat_obj, metadata_cond_name,
   
   # Retriving genes in the default DB to perform filtering
   
-  if(!is.data.frame(db)){                                                           # DEBUG!
+  if(!is.data.frame(db)){                                                           
      connectome.genes <- union(Connectome::ncomms8866_human$Ligand.ApprovedSymbol,
                             Connectome::ncomms8866_human$Receptor.ApprovedSymbol)
      genes <- connectome.genes[connectome.genes %in% rownames(seurat_obj)]
@@ -81,7 +83,7 @@ DifferentialConnectome.wrapper<-function(seurat_obj, metadata_cond_name,
   }
   names(seurat_subset_sce.con.list) <- names(seurat_subset_sce.list)
   
-  # free up RAM space
+  
 
   
   
@@ -93,7 +95,6 @@ DifferentialConnectome.wrapper<-function(seurat_obj, metadata_cond_name,
   
   
   # Stash idents and make new identities which identify each as stimulated vs. control
-  
   # subset seurat objs
 
   
@@ -105,11 +106,7 @@ DifferentialConnectome.wrapper<-function(seurat_obj, metadata_cond_name,
   seurat_obj$celltype <- Idents(seurat_obj)
   Idents(seurat_obj) <- "celltype.condition"
   
-  
-  
-  
-  
-  
+
   # Identify which ligands and receptors, for which cell populations, have an adjusted p-value < 0.05 based on a Wilcoxon rank test
   diff.p_e <- data.frame()
   for (i in 1:length(celltypes_e)){
@@ -145,12 +142,12 @@ DifferentialConnectome.wrapper<-function(seurat_obj, metadata_cond_name,
 
 
 
-
+# Build connectome function (Standard connectome creation)
 
 build.connectome<-function(seurat_obj, db=NA, p.values = TRUE ){
    seurat_obj <- NormalizeData(seurat_obj)
    
-   if(!is.data.frame(db)){                                                           # DEBUG!
+   if(!is.data.frame(db)){                                                          
      connectome.genes <- union(Connectome::ncomms8866_human$Ligand.ApprovedSymbol,
                                Connectome::ncomms8866_human$Receptor.ApprovedSymbol)
      genes <- connectome.genes[connectome.genes %in% rownames(seurat_obj)]
