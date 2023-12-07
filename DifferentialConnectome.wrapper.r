@@ -1,4 +1,5 @@
-
+# Original code of the differential Conectomics analysis wrappers to include
+# in the CCImiami package (requires documentation)
 
 # Defensive checks for ensuring correct data processing 
 # in function DifferentialConnectome.wrapper
